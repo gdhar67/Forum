@@ -45,6 +45,11 @@ Route::group(['middleware'=>'auth'], function() {
 			'as' => 'logout'
 			]);
 
+			Route::get('/getuser', [
+			'uses' => 'chatController@getUser',
+			'as' => 'getUser'
+			]);
+
 });
 
 

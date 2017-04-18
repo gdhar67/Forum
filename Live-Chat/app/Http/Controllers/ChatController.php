@@ -6,15 +6,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
-class userController extends Controller
+class chatController extends Controller
 {
 
-	public function postRegister(Request $request)
+
+	public function getUser (Request $request)
 	{
-		
-	public function getHomepage()
-	{
-		return view('homepage');
+		$reciever_uname = $request['reciever_uname'];
+		session::put('runame',$reciever_uname);
 	}
 
 }

@@ -78,7 +78,10 @@ class userController extends Controller
 
 	public function getHomepage()
 	{
-		return view('homepage');
+		$users = User::orderBy('username','asc')->get();
+
+
+			return view('homepage',['users' => $users]);
 	}
 
 }
