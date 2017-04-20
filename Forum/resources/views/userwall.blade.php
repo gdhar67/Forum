@@ -45,6 +45,7 @@
             <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" >SHARING</a>
+          <a class="navbar-brand" >HI! {{ Auth::user()->name}}</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
@@ -64,28 +65,85 @@
     </nav>
 
           <div class="inner cover">
-            <h1 class="cover-heading">{{$user}} wall</h1>
-            <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
-            <p class="lead">
-              <a href="#" class="btn btn-lg btn-default">Learn more</a>
-            </p>
+            <h1 class="cover-heading">{{$user->name}}'s Wall</h1>
           </div>
 
-          <div class="mastfoot">
-            <div class="inner">
-              <p>Cover template for <a href="http://getbootstrap.com">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
-            </div>
-          </div>
+
 
         </div>
 
       </div>
 
     </div>
+
+
+
+
+
+
+
+
+    @if($user->visibility == "public")
     <div class="col-md-6 col-md-offset-3">
-    <blockquote><p style="display:inline">Hello</p><br><p style="display:inline">Hello</p><br>
-    </blockquote>
+    <?php $flag=0; ?>
+    @foreach($post as $post)
+      <?php $flag=1; ?>
+      @if($post->user_id == $user->id && $post->post_on == "You")
+        <blockquote align="left">
+        <p>POST : {{$post->post}}</p>
+        <footer>Posted by {{ $user->username }} at <cite title="Source Title">{{ $post->created_at}}</cite></footer><br>
+        </blockquote>
+      @else
+        @if($post->user_id == $user->id && $post->post_on != "You")
+        <blockquote align="left">
+        <p>POST : {{$post->post}}</p>
+        <footer>{{ $user->username }} posted on {{$post->post_on}}'s Wall at <cite title="Source Title">{{ $post->created_at}}</cite></footer><br>
+        </blockquote>
+      @else
+        @if($post->post_on == $user->username)
+        <blockquote align="left">
+        <p>POST : {{$post->post}}</p>
+        <footer>{{$post->post_by}} posted on {{$post->post_on}}'s Wall at <cite title="Source Title">{{ $post->created_at}}</cite></footer><br>
+        </blockquote>
+        @endif
+        @endif
+      @endif
+    @endforeach
+    @if($flag==0)
+    <h2 class="cover-heading">No Posts Available.</h2>
+    @endif
+    @else
+    <h2 class="cover-heading">This Profile Is Private.</h2>
+    @endif
+
     </div>
+
+
+
+
+        <div class="col-md-6 col-md-offset-3">
+          <form class="form"  method='post' action="{{ route('postWallSubmitPost') }}">
+            <div class="form-group">
+            <input type="text" class="form-control" name="post" placeholder="What's On Your Mind?">
+            </div>
+            <input type="hidden" name="_token" value="{{ Session::token() }}">
+            <input type="hidden" name="post_on" value="{{$user->username}}">
+            <input type="hidden" name="post_by" value="{{Auth::user()->username}}">
+            <button type="submit" class="btn btn-default">Post</button>
+          </form>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->

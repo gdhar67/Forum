@@ -51,12 +51,17 @@
 
       <form class="form-signin" method="post" action="{{route('register')}}">
         <h2 class="form-signin-heading">Registration Form</h2>
+        <label for="inputusername" class="sr-only">Name</label>
+        <input type="text" id="inputName" name="name" class="form-control" placeholder="Name" required autofocus>
         <label for="inputusername" class="sr-only">Username</label>
         <input type="text" id="inputUsername" name="username" class="form-control" placeholder="Username" required autofocus>
         <label for="inputEmail" class="sr-only">Email address</label>
         <input type="text" id="inputEmail" name="email" class="form-control" placeholder="Email address" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required>
+        <label >Visibility Status</label><br>
+        <input type="radio" name="visibility" value="public" checked> <h5>Public</h5>
+        <input type="radio" name="visibility" value="Private"> <h5>Private</h5>
         <input type="hidden" name="_token" value="{{ Session::token() }}">
 
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>

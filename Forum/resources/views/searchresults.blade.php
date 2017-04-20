@@ -45,6 +45,7 @@
             <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" >SHARING</a>
+          <a class="navbar-brand" >HI! {{ Auth::user()->name}}</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">

@@ -34,7 +34,7 @@ Route::group(['middleware'=>'auth'], function() {
 			Route::group(['middleware'=>'revalidate'], function() {
 
 				Route::get('/user/homepage',[ 
-				'uses'=> 'userController@getHomepage',
+				'uses'=> 'forumController@getHomepage',
 				'as' => 'Homepage'
 				]);
 
@@ -51,7 +51,7 @@ Route::group(['middleware'=>'auth'], function() {
 			});
 
 			Route::get('/user/logout', [
-			'uses' => 'userController@getLogout',
+			'uses' => 'forumController@getLogout',
 			'as' => 'logout'
 			]);
 
@@ -60,9 +60,29 @@ Route::group(['middleware'=>'auth'], function() {
 			'as' => 'postsearch'
 			]);
 
+			Route::post('/user/postSubmitPost', [
+			'uses' => 'PostController@postSubmitPost',
+			'as' => 'postSubmitPost'
+			]);
+
+			Route::post('/userwall/postSubmitPost', [
+			'uses' => 'PostController@postWallSubmitPost',
+			'as' => 'postWallSubmitPost'
+			]);
+
 			Route::post('/user/postuserwall', [
 			'uses' => 'forumController@postUserWall',
 			'as' => 'postuserwall'
+			]);
+
+			Route::post('/upateaccount', [
+		    'uses' => 'forumController@postSaveAccount',
+		    'as' => 'account.save'
+			]);
+
+			Route::get('/userimage/{filename}', [
+		    'uses' => 'forumController@getUserImage',
+		    'as' => 'account.image'
 			]);
 			
 });
