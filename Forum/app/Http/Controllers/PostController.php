@@ -43,11 +43,18 @@ class PostController extends Controller
 		$this->validate($request,[
 			'post' =>'required|max:1000']);
 
-
+		$user = new User();
 		$post = new Post();
 		$post->post= $request['post'];
 		$post->post_on = $request['post_on'];
 		$post->post_by = $request['post_by'];
+		if($request->hasFile('image'))
+		{
+		$file = $request->file('image');
+		$filename = time(). '-' .$user->id .".jpg";
+		Image::make($file)->resize(400,400)->save(public_path('/post_image/' . $filename));
+		$post->image = $filename;
+		}
 		$request->user()->posts()->save($post);
 		$name = $request['post_on'];
 		$user= User::where('username', $name)->first();
