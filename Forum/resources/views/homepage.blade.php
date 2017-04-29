@@ -13,18 +13,30 @@ HomePage
       @if($post->user_id == Auth::user()->id && $post->post_on == "You")
         <blockquote align="left">
         <p>POST : {{$post->post}}</p>
+        @if($post->image)
+        <img src="/post_image/{{$post->image}}">
+        @endif
+        </br>
         <footer>Posted by {{ $post->post_on }} on Your Wall at <cite title="Source Title">{{ $post->created_at}}</cite></footer><br>
         </blockquote>
         @else
         @if($post->user_id == Auth::user()->id && $post->post_on != "You")
         <blockquote align="left">
         <p>POST : {{$post->post}}</p>
+        @if($post->image)
+        <img src="/post_image/{{$post->image}}">
+        @endif
+        </br>
         <footer>You posted on {{ $post->post_on }}'s wall at <cite title="Source Title">{{ $post->created_at}}</cite></footer><br>
         </blockquote>
         @else
         @if($post->post_on == Auth::user()->username)
         <blockquote align="left">
         <p>POST : {{$post->post}}</p>
+        @if($post->image)
+        <img src="/post_image/{{$post->image}}">
+        @endif
+        </br>
         <footer>{{$post->post_by}} posted on Your wall at <cite title="Source Title">{{ $post->created_at}}</cite></footer><br>
         </blockquote>
         @endif
@@ -40,7 +52,7 @@ HomePage
 
 
         <div class="col-md-6 col-md-offset-3">
-          <form class="form"  method='post' action="{{ route('postSubmitPost') }}">
+          <form class="form"  method='post' action="{{ route('postSubmitPost') }}" enctype="multipart/form-data">
             <div class="form-group">
             <input type="text" class="form-control" name="post" placeholder="What's On Your Mind?">
             </div>

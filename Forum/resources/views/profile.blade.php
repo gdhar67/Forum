@@ -47,7 +47,7 @@ Profile
                     <input type="text" name="description" class="form-control" value="{{Auth::user()->description}}" id="description">
                 </div>
                 <div class="form-group">
-                    <label for="image">Image (only .jpg)</label>
+                    <label for="image">Upload Profile Image (only .jpg)</label>
                     <input type="file" name="image" class="form-control" id="image">
                 </div>
                 <button type="submit" class="btn btn-primary">Save Account</button>

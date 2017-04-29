@@ -19,30 +19,50 @@
       @if($post->user_id == $user->id && $post->post_on == "You")
         <blockquote align="left">
         <p>POST : {{$post->post}}</p>
+        @if($post->image)
+        <img src="/post_image/{{$post->image}}">
+        @endif
+        </br>
         <footer>Posted by {{ $user->username }} at <cite title="Source Title">{{ $post->created_at}}</cite></footer><br>
         </blockquote>
         @else
         @if($post->user_id == $user->id && $post->post_on == Auth::user()->username)
         <blockquote align="left">
         <p>POST : {{$post->post}}</p>
+        @if($post->image)
+        <img src="/post_image/{{$post->image}}">
+        @endif
+        </br>
         <footer>{{ $user->username }} posted on Your Wall at <cite title="Source Title">{{ $post->created_at}}</cite></footer><br>
         </blockquote>
       @else
         @if($post->user_id == $user->id && $post->post_on != "You" && $post->post_on != Auth::user()->username )
         <blockquote align="left">
         <p>POST : {{$post->post}}</p>
+        @if($post->image)
+        <img src="/post_image/{{$post->image}}">
+        @endif
+        </br>
         <footer>{{ $user->username }} posted on {{$post->post_on}}'s Wall at <cite title="Source Title">{{ $post->created_at}}</cite></footer><br>
         </blockquote>
       @else
         @if($post->post_by == Auth::user()->username && $post->post_on == $user->username)
         <blockquote align="left">
         <p>POST : {{$post->post}}</p>
+        @if($post->image)
+        <img src="/post_image/{{$post->image}}">
+        @endif
+        </br>
         <footer>You posted on {{$post->post_on}}'s Wall at <cite title="Source Title">{{ $post->created_at}}</cite></footer><br>
         </blockquote>
         @else
         @if($post->post_by != Auth::user()->username && $post->post_on == $user->username)
         <blockquote align="left">
         <p>POST : {{$post->post}}</p>
+        @if($post->image)
+        <img src="/post_image/{{$post->image}}">
+        @endif
+        </br>
         <footer>{{$post->post_by}} posted on {{$post->post_on}}'s Wall at <cite title="Source Title">{{ $post->created_at}}</cite></footer><br>
         </blockquote>
         @endif

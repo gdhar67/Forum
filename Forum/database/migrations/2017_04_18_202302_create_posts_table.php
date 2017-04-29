@@ -19,6 +19,7 @@ class CreatePostsTable extends Migration
             $table->text('post');
             $table->text('post_on');
             $table->text('post_by');
+            $table->string('image');
         });
     }
 
