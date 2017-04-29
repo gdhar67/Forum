@@ -44,6 +44,10 @@ HomePage
             <div class="form-group">
             <input type="text" class="form-control" name="post" placeholder="What's On Your Mind?">
             </div>
+            <div class="form-group">
+                    <label for="image">Image (only .jpg)</label>
+                    <input type="file" name="image" class="form-control" id="image">
+            </div>
             <input type="hidden" name="_token" value="{{ Session::token() }}">
             <input type="hidden" name="post_on" value="You">
             <input type="hidden" name="post_by" value="{{Auth::user()->username}}">

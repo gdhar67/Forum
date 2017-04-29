@@ -100,7 +100,7 @@ class forumController extends Controller
         if ($file) {
             Storage::disk('local')->put($filename, File::get($file));
         }
-        if ($update && $old_filename !== $filename) {
+        if ($update && $old_filename != $filename) {
             Storage::delete($old_filename);
         }
         return redirect()->route('Profilepage');

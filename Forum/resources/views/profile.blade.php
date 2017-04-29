@@ -7,18 +7,17 @@ Profile
 @section('content')
 
   <section class="row new-post">
-     <div class="col-md-6 col-md-offset-3">
+     <div class="col-md-8 col-md-offset-2">
      <header><h3>Your Account</h3></header>
           
         <section class="row new-post">
-            <div class="col-md-6 col-md-offset-3">
-            <h4 align="left">Profile Picture :
+            <div class="col-md-8 col-md-offset-2">
 
-            @if (Storage::disk('local')->has(Auth::user()->name . '-' . Auth::user()->id . '.jpg'))
-                <img src="{{ route('account.image', ['filename' => Auth::user()->name . '-' . Auth::user()->id . '.jpg']) }}" alt="" class="img-responsive">
-                </h4>
+                @if (Storage::disk('local')->has(Auth::user()->name . '-' . Auth::user()->id . '.jpg'))
+                <img src="{{ route('account.image', ['filename' => Auth::user()->name . '-' . Auth::user()->id . '.jpg']) }}" style="float:left; height:150px; width:150px; border-radius: 50%; margin-right: 25px ">
+                
                 @else
-                Update Your Profile Picture</h4>
+                <img src="/default/default.jpg" style="float:left; height:150px; width:150px; border-radius: 50%; margin-right: 25px ">
                 @endif
                 <h4 align="left">Name :
                 @if(Auth::user()->name)

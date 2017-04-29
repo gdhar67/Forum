@@ -59,9 +59,9 @@
         <input type="text" id="inputEmail" name="email" class="form-control" placeholder="Email address" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required>
-        <label >Visibility Status</label><br>
-        <input type="radio" name="visibility" value="public" checked> <h5>Public</h5>
-        <input type="radio" name="visibility" value="Private"> <h5>Private</h5>
+        <label >Visibility Status</label><br><h5>
+        <input type="radio" name="visibility" value="public" checked> Public
+        <input type="radio" name="visibility" value="Private"> Private</h5>
         <input type="hidden" name="_token" value="{{ Session::token() }}">
 
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
